@@ -12,7 +12,7 @@ namespace Application.Features.ProgrammingLanguage.Commands.UpdateProgrammingLan
         public UpdateProgrammingLanguageCommandValidator()
         {
             RuleFor(u => u.Name).NotEmpty().NotNull();
-            RuleFor(u => u.Id).NotEmpty();
+            RuleFor(u => u.Id).GreaterThan(0).WithMessage("Id must be greater than 0.");
         }
     }
 }
