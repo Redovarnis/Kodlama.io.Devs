@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
@@ -35,12 +34,34 @@ namespace Persistence.Contexts
                 a.ToTable("ProgrammingLanguages").HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
                 a.Property(p => p.Name).HasColumnName("Name");
+                a.HasMany(p => p.Technologies);
             });
 
-            ProgrammingLanguage[] programmingLanguageSeeds = { new(1, "C#"), new(2, "Java"), new(3, "Python") };
+            modelBuilder.Entity<Technology>(a =>
+            {
+                a.ToTable("Technologies").HasKey(k => k.Id);
+                a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.ProgrammingLanguageId).HasColumnName("ProgrammingLanguageId");
+                a.Property(p => p.Name).HasColumnName("Name");
+                a.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
+                a.HasOne(p => p.ProgrammingLanguage);
+            });
+
+            ProgrammingLanguage[] programmingLanguageSeeds =
+            {
+                new(1, "C#"), 
+                new(2, "Java"), 
+                new(3, "Python")
+            };
             modelBuilder.Entity<ProgrammingLanguage>().HasData(programmingLanguageSeeds);
 
-
+            Technology[] technologySeeds =
+            {
+                new(1, 6, "Spring", ""),
+                new(2, 5, "ASP.NET", ""),
+                new(3, 6, "JSP", "")
+            };
+            modelBuilder.Entity<Technology>().HasData(technologySeeds);
         }
     }
 }
