@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain.Entities;
 
 namespace Persistence.Contexts
@@ -13,6 +8,7 @@ namespace Persistence.Contexts
     {
         protected IConfiguration Configuration { get; set; }
         public DbSet<ProgrammingLanguage> Brands { get; set; }
+        public DbSet<Technology> Technologies { get; set; }
 
 
         public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
@@ -43,7 +39,6 @@ namespace Persistence.Contexts
                 a.Property(p => p.Id).HasColumnName("Id");
                 a.Property(p => p.ProgrammingLanguageId).HasColumnName("ProgrammingLanguageId");
                 a.Property(p => p.Name).HasColumnName("Name");
-                a.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
                 a.HasOne(p => p.ProgrammingLanguage);
             });
 

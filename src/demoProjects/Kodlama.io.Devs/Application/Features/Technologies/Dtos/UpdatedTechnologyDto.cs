@@ -1,10 +1,8 @@
 ﻿namespace Application.Features.Technologies.Dtos
 {
-    public class TechnologyListDto
+    public class UpdatedTechnologyDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string ProgrammingLanguageName { get; set; }
-        public string ImageUrl { get; set; }
     }
 }

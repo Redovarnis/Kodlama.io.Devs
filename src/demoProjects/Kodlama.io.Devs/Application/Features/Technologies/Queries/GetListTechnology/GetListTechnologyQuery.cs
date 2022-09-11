@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Features.Technologies.Models;
+﻿using Application.Features.Technologies.Models;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
-using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +25,7 @@ namespace Application.Features.Technologies.Queries.GetListTechnology
 
             public async Task<TechnologyListModel> Handle(GetListTechnologyQuery request, CancellationToken cancellationToken)
             {
-                IPaginate<Technology> technologies = await _technologyRepository.GetListAsync(
+                IPaginate<Domain.Entities.Technology> technologies = await _technologyRepository.GetListAsync(
                     include: m => m.Include(c => c.ProgrammingLanguage),
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize

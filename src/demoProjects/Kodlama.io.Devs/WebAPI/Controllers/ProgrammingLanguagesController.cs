@@ -1,12 +1,11 @@
-﻿using Application.Features.ProgrammingLanguage.Commands.CreateProgrammingLanguage;
-using Application.Features.ProgrammingLanguage.Commands.RemoveProgrammingLanguage;
-using Application.Features.ProgrammingLanguage.Commands.UpdateProgrammingLanguage;
-using Application.Features.ProgrammingLanguage.Dtos;
-using Application.Features.ProgrammingLanguage.Models;
-using Application.Features.ProgrammingLanguage.Queries.GetByIdProgrammingLanguage;
-using Application.Features.ProgrammingLanguage.Queries.GetListProgrammingLanguageQuery;
+﻿using Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Commands.RemoveProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Queries.GetByIdProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguageQuery;
+using Application.Features.ProgrammingLanguages.Dtos;
+using Application.Features.ProgrammingLanguages.Models;
 using Core.Application.Requests;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

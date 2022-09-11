@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ProgrammingLanguage\Constants\" />
-    <Folder Include="Features\Technologies\Commands\" />
+    <Folder Include="Features\ProgrammingLanguages\Constants\" />
     <Folder Include="Features\Technologies\Constants\" />
+    <Folder Include="Features\Technologies\Commands\" />
     <Folder Include="Features\Technologies\Rules\" />
   </ItemGroup>
 
@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\corePackages\Core.Application\Core.Application.csproj" />
-    <ProjectReference Include="..\..\..\corePackages\Core.CrossCuttingConcers\Core.CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Persistence.Repositories;
+﻿using Core.Persistence.Repositories;
 
 namespace Domain.Entities
 {
@@ -11,7 +6,6 @@ namespace Domain.Entities
     {
         public int ProgrammingLanguageId { get; set; }
         public string Name { get; set; }
-        public string ImageUrl { get; set; }    
         public virtual ProgrammingLanguage? ProgrammingLanguage { get; set; }
 
         public Technology()
@@ -24,7 +18,6 @@ namespace Domain.Entities
             Id = id;
             ProgrammingLanguageId = programmingLanguageId;
             Name = name;
-            ImageUrl = imageUrl;
         }
     }
 }

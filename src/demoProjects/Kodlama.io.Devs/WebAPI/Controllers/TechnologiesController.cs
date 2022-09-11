@@ -1,9 +1,13 @@
-﻿using Application.Features.Models.Queries.GetListModelByDynamic;
-using Application.Features.Technologies.Models;
+﻿using Application.Features.Technologies.Commands.RemoveTechnology;
+using Application.Features.Technologies.Commands.UpdateTechnology;
+using Application.Features.Technologies.Dtos;
+using Application.Features.Technologies.Queries.GetListTechnologyByDynamic;
 using Application.Features.Technologies.Queries.GetListTechnology;
+using Application.Features.Technologies.Models;
 using Core.Application.Requests;
 using Core.Persistence.Dynamic;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Technologies.Commands.CreateTechnology;
 
 namespace WebAPI.Controllers
 {
@@ -11,6 +15,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class TechnologiesController : BaseController
     {
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateTechnologyCommand createTechnologyCommand)
+        {
+            CreatedTechnologyDto result = await Mediator.Send(createTechnologyCommand);
+            return Created("", result);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
@@ -27,6 +38,20 @@ namespace WebAPI.Controllers
                 { PageRequest = pageRequest, Dynamic = dynamic };
 
             TechnologyListModel result = await Mediator.Send(getListByDynamicTechnologyQuery);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Remove([FromBody] RemoveTechnologyCommand removeTechnologyCommand)
+        {
+            RemovedTechnologyDto result = await Mediator.Send(removeTechnologyCommand);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateTechnologyCommand updateTechnologyCommand)
+        {
+            UpdatedTechnologyDto result = await Mediator.Send(updateTechnologyCommand);
             return Ok(result);
         }
     }
