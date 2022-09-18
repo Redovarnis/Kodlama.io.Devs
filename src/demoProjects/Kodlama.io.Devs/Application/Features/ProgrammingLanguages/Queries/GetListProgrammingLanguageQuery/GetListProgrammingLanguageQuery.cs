@@ -4,6 +4,7 @@ using Core.Persistence.Paging;
 using MediatR;
 using Application.Features.ProgrammingLanguages.Models;
 using Application.Services.Repositories;
+using Domain.Entities;
 
 namespace Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguageQuery
 {
@@ -23,7 +24,7 @@ namespace Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLa
 
             public async Task<ProgrammingLanguageListModel> Handle(GetListProgrammingLanguageQuery request, CancellationToken cancellationToken)
             {
-                IPaginate<Domain.Entities.ProgrammingLanguage> ProgrammingLanguages = await _programmingLanguageRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
+                IPaginate<ProgrammingLanguage> ProgrammingLanguages = await _programmingLanguageRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
 
                 ProgrammingLanguageListModel mappedProgrammingLanguageListModel = _mapper.Map<ProgrammingLanguageListModel>(ProgrammingLanguages);
 

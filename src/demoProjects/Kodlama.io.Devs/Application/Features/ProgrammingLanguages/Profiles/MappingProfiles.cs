@@ -5,6 +5,7 @@ using Application.Features.ProgrammingLanguages.Commands.RemoveProgrammingLangua
 using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Models;
 using Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
+using Domain.Entities;
 
 namespace Application.Features.ProgrammingLanguages.Profiles
 {
@@ -12,19 +13,19 @@ namespace Application.Features.ProgrammingLanguages.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Domain.Entities.ProgrammingLanguage, CreatedProgrammingLanguageDto>().ReverseMap();
-            CreateMap<Domain.Entities.ProgrammingLanguage, CreateProgrammingLanguageCommand>().ReverseMap();
+            CreateMap<ProgrammingLanguage, CreatedProgrammingLanguageDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, CreateProgrammingLanguageCommand>().ReverseMap();
 
-            CreateMap<Domain.Entities.ProgrammingLanguage, RemovedProgrammingLanguageDto>().ReverseMap();
-            CreateMap<Domain.Entities.ProgrammingLanguage, RemoveProgrammingLanguageCommand>().ReverseMap();
+            CreateMap<ProgrammingLanguage, RemovedProgrammingLanguageDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, RemoveProgrammingLanguageCommand>().ReverseMap();
 
-            CreateMap<Domain.Entities.ProgrammingLanguage, UpdatedProgrammingLanguageDto>().ReverseMap();
-            CreateMap<Domain.Entities.ProgrammingLanguage, UpdateProgrammingLanguageCommand>().ReverseMap();
+            CreateMap<ProgrammingLanguage, UpdatedProgrammingLanguageDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, UpdateProgrammingLanguageCommand>().ReverseMap();
 
-            CreateMap<IPaginate<Domain.Entities.ProgrammingLanguage>, ProgrammingLanguageListModel>().ReverseMap();
+            CreateMap<IPaginate<ProgrammingLanguage>, ProgrammingLanguageListModel>().ReverseMap();
 
-            CreateMap<Domain.Entities.ProgrammingLanguage, ProgrammingLanguageListDto>().ReverseMap();
-            CreateMap<Domain.Entities.ProgrammingLanguage, ProgrammingLanguageGetByIdDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, ProgrammingLanguageListDto>().ReverseMap();
+            CreateMap<ProgrammingLanguage, ProgrammingLanguageGetByIdDto>().ReverseMap();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Application.Features.Technologies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Technologies.Commands.RemoveTechnology
@@ -24,10 +25,10 @@ namespace Application.Features.Technologies.Commands.RemoveTechnology
 
             public async Task<RemovedTechnologyDto> Handle(RemoveTechnologyCommand request, CancellationToken cancellationToken)
             {
-                Domain.Entities.Technology mappedTechnology = _mapper.Map<Domain.Entities.Technology>(request);
+                Technology mappedTechnology = _mapper.Map<Technology>(request);
                 _technologyBusinessRules.TechnologyShouldExistWhenRequested(mappedTechnology);
 
-                Domain.Entities.Technology removedTechnology = await _technologyRepository.DeleteAsync(mappedTechnology);
+                Technology removedTechnology = await _technologyRepository.DeleteAsync(mappedTechnology);
                 RemovedTechnologyDto removedTechnologyDto = _mapper.Map<RemovedTechnologyDto>(removedTechnology);
 
                 return removedTechnologyDto;

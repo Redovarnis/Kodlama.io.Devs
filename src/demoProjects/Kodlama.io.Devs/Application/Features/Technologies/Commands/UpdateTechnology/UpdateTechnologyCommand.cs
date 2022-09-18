@@ -2,6 +2,7 @@
 using Application.Features.Technologies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Technologies.Commands.UpdateTechnology
@@ -10,6 +11,7 @@ namespace Application.Features.Technologies.Commands.UpdateTechnology
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int ProgrammingLanguageId { get; set; }
 
         public class UpdateTechnologyCommandHandler : IRequestHandler<UpdateTechnologyCommand, UpdatedTechnologyDto>
         {
@@ -28,11 +30,12 @@ namespace Application.Features.Technologies.Commands.UpdateTechnology
             public async Task<UpdatedTechnologyDto> Handle(UpdateTechnologyCommand request, CancellationToken cancellationToken)
             {
                 await _technologyBusinessRules.TechnologyNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _technologyBusinessRules.ProgrammingLanguageMustExistWhenAddingNewTechnologies(request.ProgrammingLanguageId);
 
-                Domain.Entities.Technology mappedTechnology = _mapper.Map<Domain.Entities.Technology>(request);
+                Technology mappedTechnology = _mapper.Map<Technology>(request);
                 _technologyBusinessRules.TechnologyShouldExistWhenRequested(mappedTechnology);
 
-                Domain.Entities.Technology updatedTechnology = await _technologyRepository.UpdateAsync(mappedTechnology);
+                Technology updatedTechnology = await _technologyRepository.UpdateAsync(mappedTechnology);
                 UpdatedTechnologyDto updatedTechnologyDto = _mapper.Map<UpdatedTechnologyDto>(updatedTechnology);
                 return updatedTechnologyDto;
             }

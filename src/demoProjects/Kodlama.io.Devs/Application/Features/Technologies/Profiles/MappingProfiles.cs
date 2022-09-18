@@ -5,32 +5,33 @@ using Application.Features.Technologies.Dtos;
 using Application.Features.Technologies.Models;
 using AutoMapper;
 using Core.Persistence.Paging;
+using Domain.Entities;
 
-namespace Application.Features.Technology.Profiles
+namespace Application.Features.Technologies.Profiles
 {
     public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
-            CreateMap<Domain.Entities.Technology, CreatedTechnologyDto>().ReverseMap();
-            CreateMap<Domain.Entities.Technology, CreateTechnologyCommand>().ReverseMap();
+            CreateMap<Technology, CreatedTechnologyDto>().ReverseMap();
+            CreateMap<Technology, CreateTechnologyCommand>().ReverseMap();
 
-            CreateMap<Domain.Entities.Technology, RemovedTechnologyDto>().ReverseMap();
-            CreateMap<Domain.Entities.Technology, RemoveTechnologyCommand>().ReverseMap();
+            CreateMap<Technology, RemovedTechnologyDto>().ReverseMap();
+            CreateMap<Technology, RemoveTechnologyCommand>().ReverseMap();
 
-            CreateMap<Domain.Entities.Technology, UpdatedTechnologyDto>().ReverseMap();
-            CreateMap<Domain.Entities.Technology, UpdateTechnologyCommand>().ReverseMap();
+            CreateMap<Technology, UpdatedTechnologyDto>().ReverseMap();
+            CreateMap<Technology, UpdateTechnologyCommand>().ReverseMap();
 
-            CreateMap<IPaginate<Domain.Entities.Technology>, TechnologyListModel>().ReverseMap();
-            CreateMap<Domain.Entities.Technology, TechnologyListDto>().ReverseMap();
+            CreateMap<IPaginate<Technology>, TechnologyListModel>().ReverseMap();
+            CreateMap<Technology, TechnologyListDto>().ReverseMap();
 
-            CreateMap<Domain.Entities.Technology, TechnologyListDto>().
+            CreateMap<Technology, TechnologyListDto>().
                 ForMember(c => c.ProgrammingLanguageName,
                 opt => opt.MapFrom(c => 
                     c.ProgrammingLanguage.Name))
                 .ReverseMap();
             
-            CreateMap<IPaginate<Domain.Entities.Technology>, TechnologyListModel>().ReverseMap();
+            CreateMap<IPaginate<Technology>, TechnologyListModel>().ReverseMap();
         }
     }
 }

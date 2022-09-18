@@ -1,6 +1,7 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions;
 using Core.Persistence.Paging;
 using Application.Services.Repositories;
+using Domain.Entities;
 
 namespace Application.Features.Technologies.Rules
 {
@@ -23,10 +24,10 @@ namespace Application.Features.Technologies.Rules
 
         public async Task TechnologyNameCanNotBeDuplicatedWhenInserted(string name)
         {
-            IPaginate<Domain.Entities.Technology> result = await _technologyRepository.GetListAsync(b => b.Name == name);
+            IPaginate<Technology> result = await _technologyRepository.GetListAsync(b => b.Name == name);
             if (result.Items.Any()) throw new BusinessException("Technology Language exists.");
         }
-        public void TechnologyShouldExistWhenRequested(Domain.Entities.Technology technology)
+        public void TechnologyShouldExistWhenRequested(Technology technology)
         {
             if (technology == null) throw new BusinessException("Requested Technology does not exists.");
         }

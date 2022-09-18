@@ -3,6 +3,7 @@ using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
 using MediatR;
+using Domain.Entities;
 
 namespace Application.Features.ProgrammingLanguages.Commands.RemoveProgrammingLanguage
 {
@@ -24,10 +25,10 @@ namespace Application.Features.ProgrammingLanguages.Commands.RemoveProgrammingLa
 
             public async Task<RemovedProgrammingLanguageDto> Handle(RemoveProgrammingLanguageCommand request, CancellationToken cancellationToken)
             {
-                Domain.Entities.ProgrammingLanguage mappedProgrammingLanguage = _mapper.Map<Domain.Entities.ProgrammingLanguage>(request);
+                ProgrammingLanguage mappedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
                 _programmingLanguageBusinessRules.ProgrammingLanguageShouldExistWhenRequested(mappedProgrammingLanguage);
 
-                Domain.Entities.ProgrammingLanguage removedProgrammingLanguage = await _programmingLanguageRepository.DeleteAsync(mappedProgrammingLanguage);
+                ProgrammingLanguage removedProgrammingLanguage = await _programmingLanguageRepository.DeleteAsync(mappedProgrammingLanguage);
                 RemovedProgrammingLanguageDto removedProgrammingLanguageDto = _mapper.Map<RemovedProgrammingLanguageDto>(removedProgrammingLanguage);
 
                 return removedProgrammingLanguageDto;

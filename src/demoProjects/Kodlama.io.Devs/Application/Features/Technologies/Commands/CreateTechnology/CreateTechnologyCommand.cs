@@ -3,6 +3,7 @@ using Application.Features.Technologies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using MediatR;
+using Domain.Entities;
 
 namespace Application.Features.Technologies.Commands.CreateTechnology
 {
@@ -30,7 +31,7 @@ namespace Application.Features.Technologies.Commands.CreateTechnology
                 await _technologyBusinessRules.TechnologyNameCanNotBeDuplicatedWhenInserted(request.Name);
                 await _technologyBusinessRules.ProgrammingLanguageMustExistWhenAddingNewTechnologies(request.ProgrammingLanguageId);
 
-                var mappedTechnology = _mapper.Map<Domain.Entities.Technology>(request);
+                var mappedTechnology = _mapper.Map<Technology>(request);
                 var createdTechnology = await _technologyRepository.AddAsync(mappedTechnology);
                 CreatedTechnologyDto createdTechnologyDto = _mapper.Map<CreatedTechnologyDto>(createdTechnology);
                 return createdTechnologyDto;
