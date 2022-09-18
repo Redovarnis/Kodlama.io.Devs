@@ -1,4 +1,5 @@
-﻿using Application.Features.Technologies.Commands.CreateTechnology;
+﻿using Application.Features.ProgrammingLanguages.Dtos;
+using Application.Features.Technologies.Commands.CreateTechnology;
 using Application.Features.Technologies.Commands.RemoveTechnology;
 using Application.Features.Technologies.Commands.UpdateTechnology;
 using Application.Features.Technologies.Dtos;
@@ -23,15 +24,15 @@ namespace Application.Features.Technologies.Profiles
             CreateMap<Technology, UpdateTechnologyCommand>().ReverseMap();
 
             CreateMap<IPaginate<Technology>, TechnologyListModel>().ReverseMap();
-            CreateMap<Technology, TechnologyListDto>().ReverseMap();
 
+            CreateMap<Technology, TechnologyListDto>().ReverseMap();
             CreateMap<Technology, TechnologyListDto>().
                 ForMember(c => c.ProgrammingLanguageName,
                 opt => opt.MapFrom(c => 
                     c.ProgrammingLanguage.Name))
                 .ReverseMap();
-            
-            CreateMap<IPaginate<Technology>, TechnologyListModel>().ReverseMap();
+
+            CreateMap<Technology, TechnologyGetByIdDto>().ReverseMap();
         }
     }
 }

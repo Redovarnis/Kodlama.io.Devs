@@ -8,6 +8,7 @@ using Core.Application.Requests;
 using Core.Persistence.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using Application.Features.Technologies.Commands.CreateTechnology;
+using Application.Features.Technologies.Queries.GetByIdTechnology;
 
 namespace WebAPI.Controllers
 {
@@ -28,6 +29,13 @@ namespace WebAPI.Controllers
             GetListTechnologyQuery getListTechnologyQuery = new GetListTechnologyQuery() { PageRequest = pageRequest };
             TechnologyListModel result = await Mediator.Send(getListTechnologyQuery);
             return Ok(result);
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetByIdTechnologyQuery getByIdTechnologyQuery)
+        {
+            TechnologyGetByIdDto technologyGetByIdDto = await Mediator.Send(getByIdTechnologyQuery);
+            return Ok(technologyGetByIdDto);
         }
 
         [HttpPost("GetList/ByDynamic")]
